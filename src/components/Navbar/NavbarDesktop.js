@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import { ReactComponent as SearchIcons } from "./fi_search.svg";
-import { ReactComponent as LoginIcon } from "./fi_log-in.svg";
-import { ReactComponent as BellIcon } from "./fi_bell.svg";
-import { ReactComponent as ListIcon } from "./fi_list.svg";
-import { ReactComponent as UserIcon } from "./fi_user.svg";
+import { FiSearch, FiLogIn, FiList, FiBell, FiUser } from "react-icons/fi";
+import Logo from "../../asset/logo.png";
+import { Link } from "react-router-dom";
 
 function NavbarDesktop() {
   const [isLogin, setIsLogin] = useState(false);
   return (
-    <div className="flex items-center fixed bg-white shadow-md h-20 w-full px-32 ">
+    <div className="flex z-30 items-center fixed bg-white shadow-md h-20 w-full px-32 ">
       <div className="mr-3">
-        <img src="/image/logo.png" alt="logo" />
+        <img src={Logo} alt="logo" />
       </div>
 
       <div className="relative w-full flex basis-1/3">
@@ -21,22 +19,24 @@ function NavbarDesktop() {
           placeholder="Cari di sini ..."
         />
         <div className="absolute top-3 right-4">
-          <SearchIcons />
+          <FiSearch className="text-gray-400 text-2xl" />
         </div>
       </div>
 
       <div className="grow ">
         {isLogin ? (
           <div className="flex w-40 float-right justify-between">
-            <ListIcon className="cursor-pointer hover:bg-bgColorSecond rounded p-1 w-8 h-8" />
-            <BellIcon className="cursor-pointer hover:bg-bgColorSecond rounded p-1 w-8 h-8" />
-            <UserIcon className="cursor-pointer hover:bg-bgColorSecond rounded p-1 w-8 h-8" />
+            <FiList className="cursor-pointer hover:text-btnPrimary hover:bg-bgColorSecond rounded p-1 w-8 h-8" />
+            <FiBell className="cursor-pointer hover:text-btnPrimary hover:bg-bgColorSecond rounded p-1 w-8 h-8" />
+            <FiUser className="cursor-pointer hover:text-btnPrimary hover:bg-bgColorSecond rounded p-1 w-8 h-8" />
           </div>
         ) : (
-          <Button className="float-right px-4">
-            <LoginIcon className="mr-3" />
-            Masuk
-          </Button>
+          <Link to="login">
+            <Button className="float-right px-4">
+              <FiLogIn className="mr-3 text-xl" />
+              Masuk
+            </Button>
+          </Link>
         )}
       </div>
     </div>
